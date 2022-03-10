@@ -84,6 +84,7 @@ The reserve.io-server app has been carefully developed with the following techno
   - [Node.js](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
   - [TypeScript](https://www.typescriptlang.org/pt/) - JavaScript superset with syntax for types.
   - [Express](https://expressjs.com/pt-br/) - Framework for Node.js web application.
+  - [MongoDB Atlas](https://www.mongodb.com/atlas/database) - MongoDB's cloud database service.
   - [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for Node.js.
   - [ESLint](https://eslint.org/) - Pluggable JavaScript linter.
   - [Prettier](https://prettier.io/) - Opinionated Code Formatter.
