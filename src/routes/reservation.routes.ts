@@ -1,10 +1,8 @@
 import express from 'express'
 
-import { RouterPros } from './types'
-
 const routes = express.Router()
 
-routes.get<RouterPros>('/', (_, res) => {
+routes.get('/', (_, res) => {
 	return res.send({ message: 'Hello World!' })
 })
 
