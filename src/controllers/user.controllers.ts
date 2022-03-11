@@ -58,7 +58,7 @@ async function getUser(req: Request, res: Response): Promise<User> {
 		const user = await UserService.getUser(id)
 
 		if (!user) {
-			res.status(422).json({ error: 'id não encontrado.' })
+			res.status(422).json({ error: 'usuário não encontrado.' })
 			return
 		}
 
@@ -114,9 +114,29 @@ async function updateUser(req: Request, res: Response): Promise<User> {
 	}
 }
 
+async function deleteUser(req: Request, res: Response): Promise<void> {
+	try {
+		const { id } = req.params
+
+		const user = await UserService.getUser(id)
+
+		if (!user) {
+			res.status(422).json({ error: 'usuário não encontrado.' })
+			return
+		}
+
+		await UserService.deleteUser(id)
+
+		res.status(200).json({ message: 'usuário removido.' })
+	} catch (error) {
+		res.status(500).json({ error: error.message })
+	}
+}
+
 export default {
 	createUser,
 	getUsers,
 	getUser,
-	updateUser
+	updateUser,
+	deleteUser
 }
