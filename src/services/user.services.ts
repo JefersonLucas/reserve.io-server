@@ -10,7 +10,12 @@ async function getUsers(): Promise<User[]> {
 	return await UserRepository.getUsers()
 }
 
+async function getUser(id: string): Promise<User> {
+	return await UserRepository.getUser(id)
+}
+
 export default {
 	createUser,
-	getUsers
+	getUsers,
+	getUser
 }
