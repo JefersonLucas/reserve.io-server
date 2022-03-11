@@ -63,7 +63,7 @@ async function createUser(req: Request, res: Response): Promise<User> {
 		res.status(201).json({
 			id: user._id,
 			username: user.username,
-			password: user.password
+			email: user.email
 		})
 	} catch (error) {
 		res.status(500).json({ error: error.message })
