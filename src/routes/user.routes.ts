@@ -7,5 +7,6 @@ const routes = express.Router()
 routes.post('/create', UserController.createUser)
 routes.get('/', UserController.getUsers)
 routes.get('/:id', UserController.getUser)
+routes.put('/update/:id', UserController.updateUser)
 
 export default routes
