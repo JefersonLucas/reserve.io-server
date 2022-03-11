@@ -1,3 +1,4 @@
+import { UpdateWriteOpResult } from 'mongoose'
 import { User } from 'types'
 
 import UserRepository from '@repositories/user.repositories'
@@ -14,8 +15,16 @@ async function getUser(id: string): Promise<User> {
 	return await UserRepository.getUser(id)
 }
 
+async function updateUser(
+	id: string,
+	user: User
+): Promise<UpdateWriteOpResult> {
+	return await UserRepository.updateUser(id, user)
+}
+
 export default {
 	createUser,
 	getUsers,
-	getUser
+	getUser,
+	updateUser
 }
