@@ -16,6 +16,10 @@ async function getUser(id: string): Promise<User> {
 	return await UserRepository.getUser(id)
 }
 
+async function getUserEmail(string: string): Promise<User> {
+	return await UserRepository.getUserEmail(string)
+}
+
 async function updateUser(
 	id: string,
 	user: User
@@ -31,6 +35,7 @@ export default {
 	createUser,
 	getUsers,
 	getUser,
+	getUserEmail,
 	updateUser,
 	deleteUser
 }
