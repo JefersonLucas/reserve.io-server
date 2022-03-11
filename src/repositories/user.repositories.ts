@@ -1,3 +1,4 @@
+import { DeleteResult } from 'mongodb'
 import { UpdateWriteOpResult } from 'mongoose'
 import { User } from 'types'
 import UserModel from '@models/User'
@@ -21,9 +22,14 @@ async function updateUser(
 	return await UserModel.updateOne({ _id: id }, user)
 }
 
+async function deleteUser(id: string): Promise<DeleteResult> {
+	return await UserModel.deleteOne({ _id: id })
+}
+
 export default {
 	createUser,
 	getUsers,
 	getUser,
-	updateUser
+	updateUser,
+	deleteUser
 }
