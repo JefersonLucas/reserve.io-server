@@ -1,13 +1,12 @@
-import mongoose from 'mongoose'
+import { Schema, model } from 'mongoose'
+import { User } from '@types'
 
-const Schema = mongoose.Schema
-
-const User = new Schema({
+const userSchema = new Schema<User>({
 	username: String,
 	email: String,
 	password: String
 })
 
-const UserModel = mongoose.model('User', User)
+const UserModel = model<User>('User', userSchema)
 
 export default UserModel
