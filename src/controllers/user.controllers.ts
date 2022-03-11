@@ -7,6 +7,12 @@ async function createUser(req: Request, res: Response): Promise<void> {
 	try {
 		const { username, email, password } = req.body
 
+		if (!username) throw new Error('username field is required')
+
+		if (!email) throw new Error('email field is required')
+
+		if (!password) throw new Error('password field is required')
+
 		const user: User = {
 			username,
 			email,
