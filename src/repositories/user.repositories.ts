@@ -1,3 +1,4 @@
+import { UpdateWriteOpResult } from 'mongoose'
 import { User } from 'types'
 import UserModel from '@models/User'
 
@@ -13,8 +14,16 @@ async function getUser(id: string): Promise<User> {
 	return await UserModel.findOne({ _id: id })
 }
 
+async function updateUser(
+	id: string,
+	user: User
+): Promise<UpdateWriteOpResult> {
+	return await UserModel.updateOne({ _id: id }, user)
+}
+
 export default {
 	createUser,
 	getUsers,
-	getUser
+	getUser,
+	updateUser
 }
