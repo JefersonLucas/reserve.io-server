@@ -12,7 +12,11 @@ async function getUsers(): Promise<User[]> {
 }
 
 async function getUser(id: string): Promise<User> {
-	return await UserModel.findOne({ _id: id })
+	return await UserModel.findById(id, '-password')
+}
+
+async function getUserEmail(email: string): Promise<User> {
+	return await UserModel.findOne({ email: email })
 }
 
 async function updateUser(
@@ -30,6 +34,7 @@ export default {
 	createUser,
 	getUsers,
 	getUser,
+	getUserEmail,
 	updateUser,
 	deleteUser
 }

@@ -5,13 +5,16 @@
 ![Updated Badge](https://badges.pufler.dev/updated/JefersonLucas/reserve.io-server?style=flat)
 ![GitHub last commit](https://img.shields.io/github/last-commit/JefersonLucas/reserve.io-server?style=flat)
 ![MIT](https://img.shields.io/github/license/JefersonLucas/reserve.io-server?style=flat)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JefersonLucas/reserve.io-server?style=flat)
 
-![React](https://img.shields.io/badge/-React-21262d?fff&style=flat-square&logo=react)
-![TypeScript](https://img.shields.io/badge/-TypeScript-21262d?fff&style=flat-square&logo=typescript)
-![Styled-components](https://img.shields.io/badge/-Styled%20components-21262d?fff&style=flat-square&logo=styled-components)
 ![Node.js](https://img.shields.io/badge/-Node.js-21262d?style=flat-square&logo=node.js&logoColor=509941)
+![TypeScript](https://img.shields.io/badge/-TypeScript-21262d?fff&style=flat-square&logo=typescript)
+![Express](https://img.shields.io/badge/-Express-21262d?style=flat-square&logo=express)
+![MongoDB](https://img.shields.io/badge/-MongoDB-21262d?style=flat-square&logo=mongodb)
+![JWT](https://img.shields.io/badge/-JWT-21262d?style=flat-square&logo=jsonwebtokens&logoColor=fb015b)
 ![Yarn](https://img.shields.io/badge/-Yarn-21262d?fff&style=flat-square&logo=yarn)
+![EditorConfig](https://img.shields.io/badge/-EditorConfig-21262d?style=flat-square&logo=editorconfig)
+![ESLint](https://img.shields.io/badge/-ESLint-21262d?style=flat-square&logo=eslint&logoColor=4b32c3)
+![Prettier](https://img.shields.io/badge/-Prettier-21262d?style=flat-square&logo=prettier)
 ![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-21262d?fff&style=flat-square&logo=visual-studio-code&logoColor=007ACC)
 
 ## About
@@ -66,28 +69,203 @@ npm install
 yarn install
 ```
 
-2. Start the client on the port [localhost:3000](http://localhost:3000)
+2. Start the client on the port [localhost:3333](http://localhost:3333)
+
+**Obs.**: Make sure you have the `.env` file and set the `PORT` key to be able to load the application.
 
 ```bash
-npm start
+npm dev
 # or
-yarn start
+yarn dev
 ```
+
+## Creating requisitions
+
+To create HTTP requests use some API client to perform your tests and debugs like [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/).
+
+This application has the following endpoints:
+
+**/users**:
+
+- **POST**: `/users/register` - For creating users.
+
+  - example:
+
+  ```http
+  http://localhost:3333/users/register/
+  ```
+
+  ```json
+  {
+  	"username": "Jeferson Lucas",
+  	"email": "jeferson@me.com",
+  	"password": "12345",
+  	"confirm_password": "12345"
+  }
+  ```
+
+  - return:
+
+  ```json
+  {
+  	"id": "622bade825344a881e173013",
+  	"username": "Jeferson Lucas",
+  	"email": "jeferson@me.com"
+  }
+  ```
+
+  - Authorization: This route **does not needs authorization**.
+
+  - Validation: This route has validation of: **username**, **email**, **password**, **confirm password**, and if the **passwords match** and if **an email address already exists**. It also has a **hashed password**.
+
+- **POST**: `/users/login` - For user login.
+
+  - example:
+
+  ```http
+  http://localhost:3333/users/login/
+  ```
+
+  ```json
+  {
+  	"email": "jeferson@me.com",
+  	"password": "12345"
+  }
+  ```
+
+  - return:
+
+  ```json
+  {
+  	"id": "622bade825344a881e173013",
+  	"username": "Jeferson Lucas",
+  	"email": "jeferson@me.com",
+  	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJhZGU4MjUzNDRhODgxZTE3MzAxNCIsImlhdCI6MTY0NzA0NTYxN3.XsJhXqEAcxU15usts8OYyPi2NFgm0N6OI-X-4QPgIhc"
+  }
+  ```
+
+  - Authorization: This route **does not needs authorization**.
+
+  - Validation: This route has validation of: **email**, **password** and if the **user exists**.
+
+- **GET**: `/users/` (**need authorization**) - For consultation of registered users.
+
+  - example:
+
+  ```http
+  http://localhost:3333/users/
+  ```
+
+  - return:
+
+  ```json
+  [
+  	{
+  		"id": "622bade825344a881e173013",
+  		"username": "Jeferson Lucas",
+  		"email": "jeferson@me.com"
+  	},
+  	{
+  		"id": "622bade825344a881e173014",
+  		"username": "Lucas Jeferson",
+  		"email": "lucas@me.com"
+  	}
+  ]
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route **needs authorization**.
+
+- **GET**: `/users/:id` (**need authorization**) - For registered user inquiry.
+
+  - example:
+
+  ```http
+  http://localhost:3333/users/622bade825344a881e173013
+  ```
+
+  - return:
+
+  ```json
+  {
+  	"id": "622bade825344a881e173013",
+  	"username": "Jeferson Lucas",
+  	"email": "jeferson@me.com"
+  }
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route validates if the **user exists**.
+
+- **PUT**: `/users/update/:id` (**need authorization**) - To update registered user.
+
+  - example:
+
+  ```http
+  http://localhost:3333/users/update/622bade825344a881e173013
+  ```
+
+  ```json
+  {
+  	"username": "Jeferson Lucas",
+  	"email": "jeferson@me.com",
+  	"password": "123456"
+  }
+  ```
+
+  - return:
+
+  ```json
+  {
+  	"id": "622bade825344a881e173013",
+  	"username": "Jeferson Lucas",
+  	"email": "jeferson@me.com"
+  }
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route **needs authorization**. This route validates **username**, **email**, **password** and **username exists**.
+
+- **DELETE**: `/users/delete/:id` (**need authorization**) - To remove registered user.
+
+  - example:
+
+  ```http
+  http://localhost:3333/users/delete/622bade825344a881e173013
+  ```
+
+  - return:
+
+  ```json
+  {
+  	"message": "usuário removido."
+  }
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route **needs authorization**. This route does **user** validation;
 
 ## Built with
 
 The reserve.io-server app has been carefully developed with the following technologies:
 
-- Technologies used on the **server**:
+Technologies used on the **server**:
 
-  - [Yarn](https://yarnpkg.com/) - Package manager.
-  - [Node.js](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
-  - [TypeScript](https://www.typescriptlang.org/pt/) - JavaScript superset with syntax for types.
-  - [Express](https://expressjs.com/pt-br/) - Framework for Node.js web application.
-  - [MongoDB Atlas](https://www.mongodb.com/atlas/database) - MongoDB's cloud database service.
-  - [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for Node.js.
-  - [ESLint](https://eslint.org/) - Pluggable JavaScript linter.
-  - [Prettier](https://prettier.io/) - Opinionated Code Formatter.
+- [Node.js](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Yarn](https://yarnpkg.com/) - Package manager.
+- [TypeScript](https://www.typescriptlang.org/pt/) - JavaScript superset with syntax for types.
+- [Express](https://expressjs.com/pt-br/) - Framework for Node.js web application.
+- [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for Node.js.
+- [MongoDB Atlas](https://www.mongodb.com/atlas/database) - MongoDB's cloud database service.
+- [JSON Web Token](https://github.com/auth0/node-jsonwebtoken#readme) - An implementation of JSON Web Tokens.
+- [Node Bcrypt.js](https://github.com/kelektiv/node.bcrypt.js#readme) - A library to help you hash passwords.
+- [EditorConfig](https://editorconfig.org/) - EditorConfig is a file format and collection of text editor plugins for maintaining consistent coding styles between different editors and IDEs.
+- [ESLint](https://eslint.org/) - Pluggable JavaScript linter.
+- [Prettier](https://prettier.io/) - Opinionated Code Formatter.
 
 ## Authors
 
