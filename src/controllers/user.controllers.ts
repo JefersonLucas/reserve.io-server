@@ -70,7 +70,7 @@ async function createUser(req: Request, res: Response): Promise<User> {
 	}
 }
 
-async function login(req: Request, res: Response) {
+async function login(req: Request, res: Response): Promise<User> {
 	try {
 		const { email, password } = req.body
 
@@ -108,7 +108,7 @@ async function login(req: Request, res: Response) {
 		res.status(200).json({
 			id: user._id,
 			username: user.username,
-			password: user.password,
+			email: user.email,
 			token: token
 		})
 	} catch (error) {
@@ -189,7 +189,8 @@ async function updateUser(req: Request, res: Response): Promise<User> {
 
 		res.status(201).json({
 			id,
-			...user
+			username: user.username,
+			email: user.email
 		})
 	} catch (error) {
 		res.status(500).json({ error: error.message })
