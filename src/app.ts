@@ -23,7 +23,7 @@ app.use(
   })
 )
 
-app.use('/', ReservationRoutes)
+app.use('/reservations', ReservationRoutes)
 app.use('/users', UserRoutes)
 
 export default app
