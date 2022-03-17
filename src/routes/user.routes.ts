@@ -7,6 +7,7 @@ const routes = express.Router()
 
 routes.post('/register', UserController.createUser)
 routes.post('/login', UserController.login)
+routes.post('/token', UserController.validateToken)
 routes.get('/', authorization, UserController.getUsers)
 routes.get('/:id', authorization, UserController.getUser)
 routes.put('/update/:id', authorization, UserController.updateUser)
