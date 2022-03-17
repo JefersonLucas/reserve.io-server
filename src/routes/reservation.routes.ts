@@ -1,9 +1,10 @@
 import express from 'express'
 
+import ReservationController from '@controllers/reservation.controllers'
+import authorization from '@middlewares/authorization'
+
 const routes = express.Router()
 
-routes.get('/', (_, res) => {
-	return res.send({ message: 'Hello World!' })
-})
+routes.post('/register', authorization, ReservationController.createReservation)
 
 export default routes
