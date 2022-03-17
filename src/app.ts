@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 
 import ReservationRoutes from '@routes/reservation.routes'
 import UserRoutes from '@routes/user.routes'
@@ -6,12 +7,21 @@ import UserRoutes from '@routes/user.routes'
 const app = express()
 
 app.use(
-	express.urlencoded({
-		extended: true
-	})
+  express.urlencoded({
+    extended: true
+  })
 )
 
 app.use(express.json())
+
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  })
+)
 
 app.use('/', ReservationRoutes)
 app.use('/users', UserRoutes)
