@@ -127,8 +127,28 @@ async function getReservation (req: Request, res: Response): Promise<Reservation
   }
 }
 
+async function deleteReservation (req: Request, res: Response): Promise<void> {
+  try {
+    const { id } = req.params
+
+    const reservation = await ReservationService.getReservation(id)
+
+    if (!reservation) {
+      res.status(422).json({ error: 'reserva não encontrada.' })
+      return
+    }
+
+    await ReservationService.deleteReservation(id)
+
+    res.status(200).json({ message: 'reserva removida.' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 export default {
   createReservation,
   getReservations,
-  getReservation
+  getReservation,
+  deleteReservation
 }
