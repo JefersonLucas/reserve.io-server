@@ -1,3 +1,4 @@
+import { DeleteResult } from 'mongodb'
 import { Reservation } from 'types'
 import ReservationModel from '@models/Reservation'
 
@@ -13,8 +14,13 @@ async function getReservation (id: string): Promise<Reservation> {
   return await ReservationModel.findById(id)
 }
 
+async function deleteReservation (id: string): Promise<DeleteResult> {
+  return await ReservationModel.deleteOne({ _id: id })
+}
+
 export default {
   createReservation,
   getReservations,
-  getReservation
+  getReservation,
+  deleteReservation
 }
