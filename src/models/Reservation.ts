@@ -4,7 +4,7 @@ import { Reservation } from '@types'
 const reservationSchema = new Schema<Reservation>({
   status: String,
   requester: String,
-  date: Date,
+  date: String,
   place: String,
   entry_time: String,
   exit_time: String
