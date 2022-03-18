@@ -100,7 +100,35 @@ async function getReservations (_: Request, res: Response): Promise<Reservation[
   }
 }
 
+async function getReservation (req: Request, res: Response): Promise<Reservation> {
+  try {
+    const { id } = req.params
+
+    const reservation = await ReservationService.getReservation(id)
+
+    if (!reservation) {
+      res.status(422).json({ error: 'reserva não encontrada.' })
+      return
+    }
+
+    const { _id, requester, status, place, date, entry_time, exit_time } = reservation
+
+    res.status(200).json({
+      id: _id,
+      requester,
+      status,
+      place,
+      date,
+      entry_time,
+      exit_time
+    })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 export default {
   createReservation,
-  getReservations
+  getReservations,
+  getReservation
 }
