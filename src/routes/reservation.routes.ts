@@ -7,5 +7,6 @@ const routes = express.Router()
 
 routes.post('/register', authorization, ReservationController.createReservation)
 routes.get('/', authorization, ReservationController.getReservations)
+routes.get('/:id', authorization, ReservationController.getReservation)
 
 export default routes

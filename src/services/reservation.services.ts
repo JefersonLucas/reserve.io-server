@@ -9,7 +9,12 @@ async function getReservations (): Promise<Reservation[]> {
   return await ReservationRepository.getReservations()
 }
 
+async function getReservation (id: string): Promise<Reservation> {
+  return await ReservationRepository.getReservation(id)
+}
+
 export default {
   createReservation,
-  getReservations
+  getReservations,
+  getReservation
 }
