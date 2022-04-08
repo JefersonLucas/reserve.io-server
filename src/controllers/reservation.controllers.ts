@@ -9,21 +9,28 @@ import ReservationModel from '@models/Reservation'
 async function createReservation (req: Request, res: Response): Promise<Reservation> {
   try {
     const {
-      status,
       requester,
+      equipment,
+      status,
       date,
       place,
       entry_time,
-      exit_time
+      exit_time,
+      observation
     } = req.body
-
-    if (!status) {
-      res.status(422).json({ error: 'o campo de status é obrigatório.' })
-      return
-    }
 
     if (!requester) {
       res.status(422).json({ error: 'o campo do solicitante é obrigatório.' })
+      return
+    }
+
+    if (!equipment) {
+      res.status(422).json({ error: 'o campo do equipamento é obrigatório.' })
+      return
+    }
+
+    if (!status) {
+      res.status(422).json({ error: 'o campo de status é obrigatório.' })
       return
     }
 
@@ -54,24 +61,28 @@ async function createReservation (req: Request, res: Response): Promise<Reservat
     }
 
     const reservation = new ReservationModel({
-      status,
       requester,
+      equipment,
+      status,
       date,
       place,
       entry_time,
-      exit_time
+      exit_time,
+      observation
     })
 
     await ReservationService.createReservation(reservation)
 
     res.status(201).json({
       id: reservation._id,
-      status,
       requester,
+      equipment,
+      status,
       date,
       place,
       entry_time,
-      exit_time
+      exit_time,
+      observation
     })
   } catch (error) {
     res.status(500).json({ error: error.message })
@@ -83,15 +94,17 @@ async function getReservations (_: Request, res: Response): Promise<Reservation[
     const reservations = await ReservationService.getReservations()
 
     res.status(200).json(
-      reservations.map(({ _id, status, requester, place, date, entry_time, exit_time }) => {
+      reservations.map((reservation) => {
         return {
-          id: _id,
-          requester,
-          status,
-          place,
-          date,
-          entry_time,
-          exit_time
+          id: reservation._id,
+          requester: reservation.requester,
+          equipment: reservation.equipment,
+          status: reservation.status,
+          place: reservation.place,
+          date: reservation.date,
+          entry_time: reservation.entry_time,
+          exit_time: reservation.exit_time,
+          observation: reservation.observation
         }
       })
     )
@@ -111,16 +124,16 @@ async function getReservation (req: Request, res: Response): Promise<Reservation
       return
     }
 
-    const { _id, requester, status, place, date, entry_time, exit_time } = reservation
-
     res.status(200).json({
-      id: _id,
-      requester,
-      status,
-      place,
-      date,
-      entry_time,
-      exit_time
+      id: reservation._id,
+      requester: reservation.requester,
+      equipment: reservation.equipment,
+      status: reservation.status,
+      place: reservation.place,
+      date: reservation.date,
+      entry_time: reservation.entry_time,
+      exit_time: reservation.exit_time,
+      observation: reservation.observation
     })
   } catch (error) {
     res.status(500).json({ error: error.message })
