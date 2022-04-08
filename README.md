@@ -89,18 +89,14 @@ This application has the following endpoints:
 
 - **POST**: `/users/register` - For creating users.
 
-  - example:
-
-  ```http
-  http://localhost:3333/users/register/
-  ```
+  - example: http://localhost:3333/users/register/
 
   ```json
   {
-  	"username": "Jeferson Lucas",
-  	"email": "jeferson@me.com",
-  	"password": "12345",
-  	"confirm_password": "12345"
+    "username": "Jeferson Lucas",
+    "email": "jeferson@me.com",
+    "password": "12345",
+    "confirm_password": "12345"
   }
   ```
 
@@ -108,9 +104,9 @@ This application has the following endpoints:
 
   ```json
   {
-  	"id": "622bade825344a881e173013",
-  	"username": "Jeferson Lucas",
-  	"email": "jeferson@me.com"
+    "id": "622bade825344a881e173013",
+    "username": "Jeferson Lucas",
+    "email": "jeferson@me.com"
   }
   ```
 
@@ -120,16 +116,12 @@ This application has the following endpoints:
 
 - **POST**: `/users/login` - For user login.
 
-  - example:
-
-  ```http
-  http://localhost:3333/users/login/
-  ```
-
+  - example: http://localhost:3333/users/login/
+ 
   ```json
   {
-  	"email": "jeferson@me.com",
-  	"password": "12345"
+    "email": "jeferson@me.com",
+    "password": "12345"
   }
   ```
 
@@ -137,10 +129,8 @@ This application has the following endpoints:
 
   ```json
   {
-  	"id": "622bade825344a881e173013",
-  	"username": "Jeferson Lucas",
-  	"email": "jeferson@me.com",
-  	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJhZGU4MjUzNDRhODgxZTE3MzAxNCIsImlhdCI6MTY0NzA0NTYxN3.XsJhXqEAcxU15usts8OYyPi2NFgm0N6OI-X-4QPgIhc"
+    "id": "622bade825344a881e173013",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJhZGU4MjUzNDRhODgxZTE3MzAxNCIsImlhdCI6MTY0NzA0NTYxN3.XsJhXqEAcxU15usts8OYyPi2NFgm0N6OI-X-4QPgIhc"
   }
   ```
 
@@ -150,26 +140,23 @@ This application has the following endpoints:
 
 - **GET**: `/users/` (**need authorization**) - For consultation of registered users.
 
-  - example:
-
-  ```http
-  http://localhost:3333/users/
-  ```
-
+  - example: http://localhost:3333/users/
+  
   - return:
 
   ```json
   [
-  	{
-  		"id": "622bade825344a881e173013",
-  		"username": "Jeferson Lucas",
-  		"email": "jeferson@me.com"
-  	},
-  	{
-  		"id": "622bade825344a881e173014",
-  		"username": "Lucas Jeferson",
-  		"email": "lucas@me.com"
-  	}
+    {
+      "id": "622bade825344a881e173013",
+      "username": "Jeferson Lucas",
+      "email": "jeferson@me.com"
+    },
+    {
+      "id": "622bade825344a881e173014",
+      "username": "Lucas Jeferson",
+      "email": "lucas@me.com"
+    },
+    ... More users
   ]
   ```
 
@@ -179,19 +166,15 @@ This application has the following endpoints:
 
 - **GET**: `/users/:id` (**need authorization**) - For registered user inquiry.
 
-  - example:
-
-  ```http
-  http://localhost:3333/users/622bade825344a881e173013
-  ```
+  - example: http://localhost:3333/users/622bade825344a881e173013
 
   - return:
 
   ```json
   {
-  	"id": "622bade825344a881e173013",
-  	"username": "Jeferson Lucas",
-  	"email": "jeferson@me.com"
+    "id": "622bade825344a881e173013",
+    "username": "Jeferson Lucas",
+    "email": "jeferson@me.com"
   }
   ```
 
@@ -201,17 +184,13 @@ This application has the following endpoints:
 
 - **PUT**: `/users/update/:id` (**need authorization**) - To update registered user.
 
-  - example:
-
-  ```http
-  http://localhost:3333/users/update/622bade825344a881e173013
-  ```
+  - example: http://localhost:3333/users/update/622bade825344a881e173013
 
   ```json
   {
-  	"username": "Jeferson Lucas",
-  	"email": "jeferson@me.com",
-  	"password": "123456"
+    "username": "Lucas Jeferson",
+    "email": "lucas@me.com",
+    "password": "#12345"
   }
   ```
 
@@ -219,9 +198,9 @@ This application has the following endpoints:
 
   ```json
   {
-  	"id": "622bade825344a881e173013",
-  	"username": "Jeferson Lucas",
-  	"email": "jeferson@me.com"
+    "id": "622bade825344a881e173013",
+    "username": "Jeferson Lucas",
+    "email": "jeferson@me.com"
   }
   ```
 
@@ -231,23 +210,163 @@ This application has the following endpoints:
 
 - **DELETE**: `/users/delete/:id` (**need authorization**) - To remove registered user.
 
-  - example:
-
-  ```http
-  http://localhost:3333/users/delete/622bade825344a881e173013
-  ```
+  - example: http://localhost:3333/users/delete/622bade825344a881e173013
 
   - return:
 
   ```json
   {
-  	"message": "usuário removido."
+    "message": "usuário removido."
   }
   ```
 
   - Authorization: This route **needs authorization**.
 
   - Validation: This route **needs authorization**. This route does **user** validation;
+
+  
+**/reservations**:
+
+- **POST**: `/reservations/register` (**need authorization**) - For creating reservation.
+
+  - example: http://localhost:3333/reservations/register/
+
+  ```json
+  {
+    "requester": "Jeferson Lucas",
+    "equipment": "Notebook",
+    "status": "waiting",
+    "date": "1994-07-12",
+    "place": "C1",
+    "entry_time": "08:00",
+    "exit_time": "14:20",
+    "observation": ""
+  }
+  ```
+
+  - return:
+
+  ```json
+  {
+    "id": "624f84ef785defc1e467f903",
+    "requester": "Jeferson Lucas",
+    "equipment": "Notebook",
+    "status": "waiting",
+    "date": "1994-07-12",
+    "place": "C1",
+    "entry_time": "08:00",
+    "exit_time": "14:20",
+    "observation": ""
+  }
+  ```
+
+  - Authorization: This route **requires authorization**.
+
+  - Validation: This route has validation of: **requester**, **equipment**, **status**, **place**, **entry_time** and **exit_time**. The **observation** value is optional.
+
+- **GET**: `/reservations/` (**need authorization**) - For consultation of registered reservations.
+
+  - example: http://localhost:3333/reservations/
+  
+  - return:
+
+  ```json
+  [
+    {
+      "id": "624f84ef785defc1e467f903",
+      "requester": "Jeferson Lucas",
+      "equipment": "Notebook",
+      "status": "waiting",
+      "date": "1994-07-12",
+      "place": "C1",
+      "entry_time": "08:00",
+      "exit_time": "14:20",
+      "observation": ""
+    },
+    ... More reservations
+  ]
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route **has no validation**.
+
+- **GET**: `/reservations/:id` (**need authorization**) - For registered reservation inquiry.
+
+  - example: http://localhost:3333/reservations/624f84ef785defc1e467f903
+
+  - return:
+
+  ```json
+  {
+    "id": "624f84ef785defc1e467f903",
+    "requester": "Jeferson Lucas",
+    "equipment": "Notebook",
+    "status": "waiting",
+    "date": "1994-07-12",
+    "place": "C1",
+    "entry_time": "08:00",
+    "exit_time": "14:20",
+    "observation": ""
+  }
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route validates if the **reservation exists**.
+
+- **PUT**: `/reservations/update/:id` (**need authorization**) - To update registered reservation.
+
+  - example: http://localhost:3333/reservations/update/624f84ef785defc1e467f903
+
+  ```json
+  {
+    "requester": "Lucas Jeferson",
+    "equipment": "Notebook",
+    "status": "waiting",
+    "date": "1994-07-12",
+    "place": "C1",
+    "entry_time": "08:00",
+    "exit_time": "14:20",
+    "observation": ""
+  }
+  ```
+
+  - return:
+
+  ```json
+  {
+    "id": "624f84ef785defc1e467f903",
+    "requester": "Lucas Jeferson",
+    "equipment": "Notebook",
+    "status": "waiting",
+    "date": "1994-07-12",
+    "place": "C1",
+    "entry_time": "08:00",
+    "exit_time": "14:20",
+    "observation": ""
+  }
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route validates **requester**, **equipment**, **status**, **place**, **entry_time** and **exit_time**.
+
+- **DELETE**: `/reservations/delete/:id` (**need authorization**) - To remove registered reservation.
+
+  - example: http://localhost:3333/reservations/delete/624f84ef785defc1e467f903
+
+  - return:
+
+  ```json
+  {
+    "message": "reserva removida."
+  }
+  ```
+
+  - Authorization: This route **needs authorization**.
+
+  - Validation: This route does **reservation** validation;
 
 ## Built with
 
@@ -263,6 +382,7 @@ Technologies used on the **server**:
 - [MongoDB Atlas](https://www.mongodb.com/atlas/database) - MongoDB's cloud database service.
 - [JSON Web Token](https://github.com/auth0/node-jsonwebtoken#readme) - An implementation of JSON Web Tokens.
 - [Node Bcrypt.js](https://github.com/kelektiv/node.bcrypt.js#readme) - A library to help you hash passwords.
+- [Dotenv](https://github.com/motdotla/dotenv#readme) - Dependency module that loads environment variables from an .env file to process.env.
 - [EditorConfig](https://editorconfig.org/) - EditorConfig is a file format and collection of text editor plugins for maintaining consistent coding styles between different editors and IDEs.
 - [ESLint](https://eslint.org/) - Pluggable JavaScript linter.
 - [Prettier](https://prettier.io/) - Opinionated Code Formatter.
