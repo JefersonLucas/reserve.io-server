@@ -12,10 +12,12 @@ export interface User {
 
 export interface Reservation {
 	_id?: Types.ObjectId
-	status: Status
 	requester: string
+	equipment: string
+	status: Status
 	date: string
 	place: string
 	entry_time: string
 	exit_time: string
+	observation?: string
 }
