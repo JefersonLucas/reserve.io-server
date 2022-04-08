@@ -140,6 +140,96 @@ async function getReservation (req: Request, res: Response): Promise<Reservation
   }
 }
 
+async function updateReservation (req: Request, res: Response): Promise<Reservation> {
+  try {
+    const {
+      requester,
+      equipment,
+      status,
+      date,
+      place,
+      entry_time,
+      exit_time,
+      observation
+    } = req.body
+
+    const { id } = req.params
+
+    if (!requester) {
+      res.status(422).json({ error: 'o campo do solicitante é obrigatório.' })
+      return
+    }
+
+    if (!equipment) {
+      res.status(422).json({ error: 'o campo do equipamento é obrigatório.' })
+      return
+    }
+
+    if (!status) {
+      res.status(422).json({ error: 'o campo de status é obrigatório.' })
+      return
+    }
+
+    if (!date) {
+      res.status(422).json({ error: 'o campo de data é obrigatório.' })
+      return
+    }
+
+    if (!place) {
+      res
+        .status(422)
+        .json({ error: 'o campo do local é obrigatório.' })
+      return
+    }
+
+    if (!entry_time) {
+      res
+        .status(422)
+        .json({ error: 'o campo de horário de entrada é obrigatório.' })
+      return
+    }
+
+    if (!exit_time) {
+      res
+        .status(422)
+        .json({ error: 'o campo de horário de saída é obrigatório.' })
+      return
+    }
+
+    const reservation: Reservation = {
+      requester,
+      equipment,
+      status,
+      date,
+      place,
+      entry_time,
+      exit_time,
+      observation
+    }
+
+    const updateReservation = await ReservationService.updateReservation(id, reservation)
+
+    if (updateReservation.matchedCount === 0) {
+      res.status(422).json({ error: 'reserva não encontrada.' })
+      return
+    }
+
+    res.status(201).json({
+      id: reservation._id,
+      requester,
+      equipment,
+      status,
+      date,
+      place,
+      entry_time,
+      exit_time,
+      observation
+    })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 async function deleteReservation (req: Request, res: Response): Promise<void> {
   try {
     const { id } = req.params
@@ -163,5 +253,6 @@ export default {
   createReservation,
   getReservations,
   getReservation,
+  updateReservation,
   deleteReservation
 }
