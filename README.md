@@ -6,12 +6,13 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/JefersonLucas/reserve.io-server?style=flat)
 ![MIT](https://img.shields.io/github/license/JefersonLucas/reserve.io-server?style=flat)
 
+![Yarn](https://img.shields.io/badge/-Yarn-21262d?fff&style=flat-square&logo=yarn)
 ![Node.js](https://img.shields.io/badge/-Node.js-21262d?style=flat-square&logo=node.js&logoColor=509941)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-21262d?fff&style=flat-square&logo=typescript)
+![Babel](https://img.shields.io/badge/-Babel-21262d?style=flat-square&logo=babel)
 ![Express](https://img.shields.io/badge/-Express-21262d?style=flat-square&logo=express)
 ![MongoDB](https://img.shields.io/badge/-MongoDB-21262d?style=flat-square&logo=mongodb)
 ![JWT](https://img.shields.io/badge/-JWT-21262d?style=flat-square&logo=jsonwebtokens&logoColor=fb015b)
-![Yarn](https://img.shields.io/badge/-Yarn-21262d?fff&style=flat-square&logo=yarn)
 ![EditorConfig](https://img.shields.io/badge/-EditorConfig-21262d?style=flat-square&logo=editorconfig)
 ![ESLint](https://img.shields.io/badge/-ESLint-21262d?style=flat-square&logo=eslint&logoColor=4b32c3)
 ![Prettier](https://img.shields.io/badge/-Prettier-21262d?style=flat-square&logo=prettier)
@@ -374,16 +375,17 @@ The reserve.io-server app has been carefully developed with the following techno
 
 Technologies used on the **server**:
 
-- [Node.js](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Yarn](https://yarnpkg.com/) - Package manager.
+- [Node.js](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [TypeScript](https://www.typescriptlang.org/pt/) - JavaScript superset with syntax for types.
+- [Babel](https://babeljs.io/) - JavaScript compiler.
 - [Express](https://expressjs.com/pt-br/) - Framework for Node.js web application.
 - [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for Node.js.
 - [MongoDB Atlas](https://www.mongodb.com/atlas/database) - MongoDB's cloud database service.
 - [JSON Web Token](https://github.com/auth0/node-jsonwebtoken#readme) - An implementation of JSON Web Tokens.
 - [Node Bcrypt.js](https://github.com/kelektiv/node.bcrypt.js#readme) - A library to help you hash passwords.
 - [Dotenv](https://github.com/motdotla/dotenv#readme) - Dependency module that loads environment variables from an .env file to process.env.
-- [EditorConfig](https://editorconfig.org/) - EditorConfig is a file format and collection of text editor plugins for maintaining consistent coding styles between different editors and IDEs.
+- [EditorConfig](https://editorconfig.org/) - File format and collection of text editor plugins to keep coding styles consistent across different editors and IDEs.
 - [ESLint](https://eslint.org/) - Pluggable JavaScript linter.
 - [Prettier](https://prettier.io/) - Opinionated Code Formatter.
 
